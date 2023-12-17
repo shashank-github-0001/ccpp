@@ -1,14 +1,7 @@
 #include <iostream>
-#include <cmath>
-#include <climits>
-#include <cfloat>
-#define X "name"
-
+#include <string>
 
 int main() {
-    bool state = false;
-    std::cout << std::boolalpha << state << std::endl;
-    const int a = 1;
-    std::cout << a << std::endl;
-    std::cout << X << std::endl;
+    std::string name = "shashank";
+    bool contains = name.find("a") != std::string::npos;
 }
