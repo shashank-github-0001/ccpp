@@ -1,29 +1,23 @@
-#include <sstream>
 #include <vector>
+#include <sstream>
 #include <iostream>
-using namespace std;
-
-
-vector<int> parseInts(string str) {
-  std::vector<int> integers;
-  std::stringstream ss(str);
-  int value;
-  char chu;
-  while(ss >> value) {
-    integers.push_back(value);
-    ss >> chu;
-  }
-  return integers;
-
-}
+#include <string>
 
 int main() {
-    string str;
-    cin >> str;
-    vector<int> integers = parseInts(str);
-    for(int i = 0; i < integers.size(); i++) {
-        cout << integers[i] << "\n";
+    std::string line;
+    int num;
+    std::getline(std::cin, line);
+    std::stringstream ss(line);
+    std::vector<int> vec;
+    while ( ss >> num ) {
+        vec.push_back(num);
+        if(ss.peek() == ' ' || ss.peek() == ',') {
+            ss.ignore();
+        }
     }
-    
-    return 0;
-}   
+    for (int i : vec) {
+        std::cout << i << std::endl;
+    }
+}
+
+
