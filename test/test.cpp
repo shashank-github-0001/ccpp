@@ -1,8 +1,11 @@
 #include <iostream>
 
+
+auto print = [](){
+    std::cout << "hello world!" << std::endl;
+};
+
 int main() {
-    int a = 25;
-    unsigned int b = a;
-    std::cout << a << "\n";
-    std::cout << b << std::endl;
+    print();
 }
+
