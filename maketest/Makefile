@@ -5,3 +5,6 @@ towerofhanoi : towerofhanoi.o
 
 towerofhanoi.o : towerofhanoi.c
 	gcc $(CFLAGS) -c towerofhanoi.c
+
+clean :
+	rm -rf *.o
