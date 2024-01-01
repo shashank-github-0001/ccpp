@@ -19,3 +19,4 @@ void tower_of_hanoi(int n, char from, char to, char aux) {
   printf("move the disk %d from %c to %c\n", n, from, to);
   tower_of_hanoi(n - 1, aux, to, from);
 }
+
