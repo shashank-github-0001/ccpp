@@ -1,3 +1,5 @@
+#include <algorithm>
+#include <cstdio>
 #include <iostream>
 
 
@@ -16,46 +18,50 @@ struct ListNode {
 class Solution {
     public:
         ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-            ListNode* temp = new ListNode();
+            if(length(l1) < length(l2)){
+                ListNode* temp = l1;
+                l1 = l2;
+                l2 = temp;
+                temp = nullptr;
+            }
+            int sum = 0;
             int carry = 0;
-            ListNode* copy_temp = temp;
-            if(l1->next==nullptr && l2->next==nullptr){
-                temp->val = l1->val+l2->val;
-                return temp;
+            ListNode* curl1 = l1;
+            ListNode* curl2 = l2;
+            while (curl2!=nullptr) {
+                curl1->val += curl2->val;
+                curl1 = curl1->next;
+                curl2 = curl2->next;
             }
-            ListNode* ltemp = l1;
-            ListNode* rtemp = l2;
-            while(ltemp!=nullptr && rtemp!=nullptr){
-                temp->val = (rtemp->val + ltemp->val + carry)/10;
-                carry = (rtemp->val + ltemp->val + carry)%10;
-                temp->next = new ListNode();
-                temp = temp->next;
-                ltemp = ltemp->next;
-                rtemp = rtemp->next;
-            }
-            if(ltemp==nullptr && rtemp==nullptr && carry == 0) return copy_temp;
-            if(ltemp==nullptr && rtemp==nullptr && carry != 0){
-                temp->next = new ListNode();
-                temp = temp->next;
-                temp->val = carry;
-            }
-            if(ltemp==nullptr){
-                while (rtemp!=nullptr) {
-                    temp->val = (rtemp->val+carry)/10;
-                    carry = (rtemp->val+carry)%10;
-                    temp->next = new ListNode();
-                    temp = temp->next;
-                    rtemp = rtemp->next;
+            curl1 = l1;
+            curl2 = l2;
+            while (curl1!=nullptr) {
+                if(curl1->val >= 10 && curl1->next!=nullptr){
+                    curl1->val = curl1->val - 10;
+                    curl1->next->val += 1;
+                    curl1 = curl1->next;
+                }
+                else if(curl1->val>=10 && curl1->next==nullptr){
+                    curl1->next = new ListNode();
+                    curl1->val = curl1->val - 10;
+                    curl1->next->val += 1;
+                    curl1 = curl1->next;
+                }
+                else {
+                    curl1 = curl1->next;
                 }
             }
-            if(rtemp==nullptr){
-                while (ltemp!=nullptr) {
-                    temp->val = (ltemp->val+carry)/10;
-                    carry = (ltemp->val+carry)%10;
-                    temp->next = new ListNode();
-                    temp = temp->next;
-                    ltemp = ltemp->next;
-                }
+            return l1;
+        }
+
+    private:
+        int length(ListNode* head){
+            ListNode* temp = head;
+            int counter = 0;
+            while (temp!=nullptr) {
+                counter++;
+                temp = temp->next;
             }
+            return counter;
         }
 };
