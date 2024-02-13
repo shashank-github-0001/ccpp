@@ -16,13 +16,12 @@ class Solution {
             if(root == nullptr) return;
             vector<int> result;
             pre_order(root, result);
-            TreeNode* start = new TreeNode(result[0]);
-            TreeNode* cur = start;
-            for(int i=1; i<result.size(); i++){
+            TreeNode* cur = root;
+            for (int i = 1; i < result.size(); i++) {
+                cur->left = nullptr;
                 cur->right = new TreeNode(result[i]);
                 cur = cur->right;
             }
-            root = start;
         }
     public:
         void pre_order(TreeNode* root, vector<int>& result){
