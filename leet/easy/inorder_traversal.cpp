@@ -1,4 +1,4 @@
-#include <type_traits>
+#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -16,9 +16,10 @@ class Solution {
         vector<int> inorderTraversal(TreeNode* root) {
             vector<int> result;
             helperFunction(root, result);
+            reverse(result.begin(), result.end());
             return result;
-
         }
+    private:
         void helperFunction(TreeNode* root, vector<int>& result){
             if(root!=nullptr){
                 helperFunction(root->right, result);
