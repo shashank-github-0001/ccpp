@@ -15,4 +15,3 @@ std::vector<int> getRow( int rowIndex ) {
     }
     return matrix[rowIndex];
 } 
-

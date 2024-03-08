@@ -1,11 +1,3 @@
-#include <algorithm>
-#include <cstdio>
-#include <iostream>
-
-
-int main () {}
-
-
 struct ListNode {
     int val;
     ListNode *next;
